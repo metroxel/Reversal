@@ -28,9 +28,9 @@ public class Reversal {
 		String tempForTokens = "";
 		ArrayList<String> fileContents = new ArrayList<String>();
 		String[] temp;
-		String [] reverseTemp;
+		String[] reverseTemp;
 		int index;
-		
+
 		try {
 			// reads in data
 			Scanner scan = new Scanner(input);
@@ -49,13 +49,12 @@ public class Reversal {
 					// reverse word before adding
 					wordsInReverse = tokenizer.nextToken();
 					reverseTemp = new String[wordsInReverse.length()];
-					
+
 					// add reversed word to temp array
-					}
+				}
 
 				// reverse words
-				for(int i = temp.length; i >= 0;  )
-				
+				// for(int i = temp.length; i >= 0; i--)
 
 			}
 			// add to a temporary string
