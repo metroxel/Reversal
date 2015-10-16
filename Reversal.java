@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -29,6 +30,7 @@ public class Reversal {
 		String tempForTokens = "";
 		ArrayList<String> linesToReverse = new ArrayList<String>();
 		String temp = "";
+		PrintWriter writeToOut = new PrintWriter(output);
 
 		try {
 			// reads in data
@@ -42,6 +44,7 @@ public class Reversal {
 
 				// while there are still words, add to temp String in reverse
 				// order
+				temp = tokenizer.nextToken();
 				while (tokenizer.hasMoreTokens()) {
 					temp = tokenizer.nextToken() + " " + temp;
 
@@ -51,10 +54,15 @@ public class Reversal {
 				// reset temp
 				temp = "";
 			}
+
 			// reverse the arrayList
 			Collections.reverse(linesToReverse);
-
-			// STILL NEED TO WRITE TO OUTPUT FILE
+			// write to output file
+			for (int i = 0; i < linesToReverse.size(); i++) {
+				writeToOut.println(linesToReverse.get(i));
+			}
+			writeToOut.flush();
+			writeToOut.close();
 
 			// be sure to close everything since done
 			scan.close();
