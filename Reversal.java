@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -26,35 +27,38 @@ public class Reversal {
 
 		String wordsInReverse = "";
 		String tempForTokens = "";
-		ArrayList<String> fileContents = new ArrayList<String>();
-		String[] temp;
-		int index;
+		ArrayList<String> linesToReverse = new ArrayList<String>();
+		String temp = "";
 
 		try {
 			// reads in data
 			Scanner scan = new Scanner(input);
 			while (scan.hasNext()) {
-				//
+
 				tempForTokens = scan.nextLine();
 				// create a tokenizer to split words up at spaces
 				StringTokenizer tokenizer = new StringTokenizer(tempForTokens,
 						" ");
-				// allocate an array for the length of tokenizer
-				temp = new String[tokenizer.countTokens()];
 
-				index = 0;
-				// while there are still words, add to temp array
+				// while there are still words, add to temp String in reverse
+				// order
 				while (tokenizer.hasMoreTokens()) {
-					temp[index] = tokenizer.nextToken();
-					index++;
+					temp = tokenizer.nextToken() + " " + temp;
+
 				}
 
+				linesToReverse.add(temp);
+				// reset temp
+				temp = "";
 			}
-			// store strings to be written to output file
-			// write stored strings to output file
+			// reverse the arrayList
+			Collections.reverse(linesToReverse);
+
+			// STILL NEED TO WRITE TO OUTPUT FILE
 
 			// be sure to close everything since done
 			scan.close();
+
 		} catch (FileNotFoundException e) {
 			System.out.print("File does not exist");
 		} catch (IOException e) {
