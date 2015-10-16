@@ -13,22 +13,34 @@ public class ReversalTest {
 	@Test
 	public void test() throws FileNotFoundException {
 		// create input and output files to be used
-		File input = new File("test1.txt");
-		File output = new File("test1Out.txt");
+		File input = new File("testInput.txt");
+		File output = new File("testOutput.txt");
 
+		// empty output file
+		PrintWriter writeOut = new PrintWriter(output);
+		writeOut.println(" ");
+		writeOut.flush();
+		writeOut.close();
 		// write to input file
 		PrintWriter write = new PrintWriter(input);
 		write.println("The cat runs");
+		write.println("The dog runs");
 		write.flush();
 		write.close();
 
 		// call Reversal code
 		Reversal.reverseFile(input, output);
-		Scanner scan = new Scanner(output);
-		String expected = "snur tac eht";
-		String actual = scan.nextLine();
-		scan.close();
-		assertEquals("Output file is not correct", expected, actual);
-	}
 
+		// Compare to see if correct
+		Scanner scan = new Scanner(output);
+		String expected = "runs cat The";
+		String actual = scan.nextLine();
+		assertEquals("Output file is not correct", expected, actual);
+
+		String expected2 = "runs dog The";
+		String actual2 = scan.nextLine();
+		assertEquals("Output file is not correct", expected2, actual2);
+		scan.close();
+
+	}
 }
