@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +10,6 @@ import java.util.StringTokenizer;
  * Class Reversal
  * 
  * @author Megan Troxel
- * @version 10/16/15
  *
  */
 public class Reversal {
@@ -26,14 +24,14 @@ public class Reversal {
 	public static void reverseFile(File input, File output)
 			throws FileNotFoundException {
 
-		String tempForTokens = "";
-		ArrayList<String> linesToReverse = new ArrayList<String>();
-		String temp = "";
-		PrintWriter writeToOut = new PrintWriter(output);
-		Scanner scan = new Scanner(input);
-		StringTokenizer tokenizer;
-
 		try {
+			String tempForTokens = "";
+			ArrayList<String> linesToReverse = new ArrayList<String>();
+			String temp = "";
+			PrintWriter writeToOut = new PrintWriter(output);
+			Scanner scan = new Scanner(input);
+			StringTokenizer tokenizer;
+
 			// reads data to then be manipulated
 			while (scan.hasNext()) {
 
@@ -75,12 +73,8 @@ public class Reversal {
 			writeToOut.close();
 			scan.close();
 
-		} catch (Exception ex) {
-			if (ex instanceof FileNotFoundException) {
-				System.out.print("File does not exist");
-			} else if (ex instanceof IOException) {
-				System.out.print("File was not read properly");
-			}
+		} catch (Exception e1) {
+			throw new FileNotFoundException();
 		}
 	}
 }
