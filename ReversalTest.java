@@ -40,10 +40,12 @@ public class ReversalTest {
 
 	}
 
-	// test for non-existent input file
+	// test for non-existent input or output file
 	@Test(expected = FileNotFoundException.class)
 	public void testDoesNotExist() throws FileNotFoundException {
-		// NEED TO DO
+		outputFile = new File("outputFileNotHere.txt");
+		Reversal.reverseFile(inputFile, outputFile);
+
 	}
 
 	// test for 1 line in input
@@ -168,14 +170,91 @@ public class ReversalTest {
 	// test for random empty line
 	@Test
 	public void testEmptyRandom() throws FileNotFoundException {
-		// NEED TO DO
+		// create input and output files to be used
+		inputFile = new File("inputEmptyRandom.txt");
+		outputFile = new File("outputEmptyRandom.txt");
+
+		// create input file with two lines
+		write = new PrintWriter(inputFile);
+		write.println("Once upon a time there was a line");
+		write.println("in the summer it is hot, in the winter it is cold");
+		write.println("The dog jumps");
+		write.println("");
+		write.println("The dog jumped over the fence");
+
+		write.flush();
+		write.close();
+
+		Reversal.reverseFile(inputFile, outputFile);
+
+		// Compare to see if correct
+		scan = new Scanner(outputFile);
+		String expected = "fence the over jumped dog The";
+		String actual = scan.nextLine();
+		assertEquals("Output file is not correct", expected, actual);
+
+		String expected1 = "";
+		String actual1 = scan.nextLine();
+		assertEquals("Output file is not correct", expected1, actual1);
+
+		String expected2 = "jumps dog The";
+		String actual2 = scan.nextLine();
+		assertEquals("Output file is not correct", expected2, actual2);
+
+		String expected3 = "cold is it winter the in hot, is it summer the in";
+		String actual3 = scan.nextLine();
+		assertEquals("Output file is not correct", expected3, actual3);
+
+		String expected4 = "line a was there time a upon Once";
+		String actual4 = scan.nextLine();
+		assertEquals("Output file is not correct", expected4, actual4);
+		scan.close();
 
 	}
 
 	// test for multiple empty lines
 	@Test
 	public void testEmptyMultiple() throws FileNotFoundException {
-		// NEED TO DO
+		// create input and output files to be used
+		inputFile = new File("inputEmptyRandomMult.txt");
+		outputFile = new File("outputEmptyRandomMult.txt");
+
+		// create input file with two lines
+		write = new PrintWriter(inputFile);
+		write.println("Once upon a time there was a line");
+		write.println("");
+		write.println("");
+		write.println("");
+		write.println("The dog jumped over the fence");
+
+		write.flush();
+		write.close();
+
+		Reversal.reverseFile(inputFile, outputFile);
+
+		// Compare to see if correct
+		scan = new Scanner(outputFile);
+		String expected = "fence the over jumped dog The";
+		String actual = scan.nextLine();
+		assertEquals("Output file is not correct", expected, actual);
+
+		String expected1 = "";
+		String actual1 = scan.nextLine();
+		assertEquals("Output file is not correct", expected1, actual1);
+
+		String expected2 = "";
+		String actual2 = scan.nextLine();
+		assertEquals("Output file is not correct", expected2, actual2);
+
+		String expected3 = "";
+		String actual3 = scan.nextLine();
+		assertEquals("Output file is not correct", expected3, actual3);
+
+		String expected4 = "line a was there time a upon Once";
+		String actual4 = scan.nextLine();
+		assertEquals("Output file is not correct", expected4, actual4);
+		scan.close();
+
 	}
 
 	// test for numerous lines
